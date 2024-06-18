@@ -1,5 +1,7 @@
 package br.com.alura.codechella.domain.entities.users;
 
+import br.com.alura.codechella.domain.Address;
+
 import java.time.LocalDate;
 
 /**
@@ -12,6 +14,7 @@ public class Users {
     private String nome;
     private LocalDate nascimento;
     private String email;
+    private Address address;
 
     public Users(String cpf, String nome, LocalDate nascimento, String email) {
         if (cpf == null || !cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}")) {
@@ -53,5 +56,13 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
