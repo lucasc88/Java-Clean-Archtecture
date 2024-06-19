@@ -1,6 +1,8 @@
 package br.com.alura.codechella.domain.entites.users;
 
+import br.com.alura.codechella.domain.entities.users.UserFactory;
 import br.com.alura.codechella.domain.entities.users.Users;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -81,4 +83,14 @@ public class UsersTest {
         assertEquals("janedoe@example.com", user.getEmail());
     }
 
+    @Test
+    public void deveCriarUsuarioUsandoFabricaDeUsuario(){
+        UserFactory fabrica = new UserFactory();
+        Users usuario = fabrica.comNomeCpfNascimento("Emily", "654.123.897-88",
+                LocalDate.parse("2000-10-01"));
+        Assertions.assertEquals(usuario.getNome(), "Emily");
+
+        fabrica.incluiEndereco("12345-999", 40, "apto 201");
+        Assertions.assertEquals("apto 201", usuario.getAddress().getComplemento());
+    }
 }
