@@ -1,0 +1,12 @@
+package br.com.alura.codechella.application.gateways;
+
+import br.com.alura.codechella.domain.entities.users.Users;
+
+import java.util.List;
+
+public interface UserRepository {
+
+    Users saveUser(Users user);
+    List<Users> listUsers();
+
+}
