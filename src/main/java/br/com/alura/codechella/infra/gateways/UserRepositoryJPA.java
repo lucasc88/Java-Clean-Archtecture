@@ -5,6 +5,7 @@ import br.com.alura.codechella.infra.persistence.UserEntity;
 import br.com.alura.codechella.infra.persistence.UserRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserRepositoryJPA implements br.com.alura.codechella.application.gateways.UserRepository {
 
@@ -24,9 +25,15 @@ public class UserRepositoryJPA implements br.com.alura.codechella.application.ga
         return mapper.fromEntityToDomain(entity);
     }
 
+    /**
+     * Find the User Entity from DB and parse to Domain Object
+     *
+     * @return List<Users>
+     */
     @Override
     public List<Users> listUsers() {
-//        return userRepository.findAll();
-        return null;
+        return userRepository.findAll().stream()
+                .map(mapper::fromEntityToDomain)
+                .collect(Collectors.toList());
     }
 }
