@@ -36,4 +36,27 @@ public class UserRepositoryJPA implements br.com.alura.codechella.application.ga
                 .map(mapper::fromEntityToDomain)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Users updateUser(String cpf, Users user) {
+        UserEntity entity = userRepository.findByCpf(cpf);
+        if (entity != null) {
+            var userUpdate = mapper.fromDomainToEntity(user);
+            userUpdate.setId(entity.getId());
+            userRepository.save(userUpdate);
+            return mapper.fromEntityToDomain(userUpdate);
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteUser(String cpf) {
+        UserEntity entity = userRepository.findByCpf(cpf);
+        if (entity != null) {
+            userRepository.deleteById(entity.getId());
+        } else {
+            throw new RuntimeException("There is no User with this CPF: " + cpf);
+        }
+    }
+
 }

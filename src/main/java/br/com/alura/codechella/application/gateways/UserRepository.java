@@ -10,6 +10,10 @@ import java.util.List;
 public interface UserRepository {
 
     Users saveUser(Users user);
+
     List<Users> listUsers();
 
+    Users updateUser(String cpf, Users user);
+
+    void deleteUser(String cpf);
 }
