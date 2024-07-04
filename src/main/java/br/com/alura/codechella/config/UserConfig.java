@@ -10,6 +10,11 @@ import br.com.alura.codechella.infra.gateways.UserRepositoryJPA;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Class resposable to create the Beans to be used in the Use Cases Classes
+ * e.g. CreateUser, ListUser, UpdateUser, DeleteUser. In this way, the
+ * UserController can inject the Use Cases Classes properly
+ */
 @Configuration
 public class UserConfig {
 
